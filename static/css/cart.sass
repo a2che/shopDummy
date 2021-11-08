@@ -1,0 +1,776 @@
+$colorSelect: #F16D7F
+$colorText: #222222
+$widthSite: 1140px
+$transitionSpeed: 200ms
+
+=flexSB()
+	display: flex
+	justify-content: space-between
+	align-items: center
+	flex-wrap: wrap 
+	flex-direction: row
+	
+=flexC()
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-wrap: wrap 
+	flex-direction: row
+	
+=font($size, $color)
+	font-size: $size
+	color: $color
+	font-weight: normal
+	line-height: 25px
+	font-family: Lato
+
+
+
+@mixin mediaSize($size) 
+	@if $size == xxl
+		@media (min-width: 1200px)
+			@content 
+
+	@else if $size == xl 
+		@media (max-width: 1200px)
+			@content  
+
+	@else if $size == lg 
+		@media (max-width: 992px)
+			@content  
+
+	@else if $size == md 
+		@media (max-width: 768px)
+			@content
+			
+	@else if $size == sm 
+		@media (max-width: 576px)
+			@content
+	@else if $size == xs
+		@media (max-width: 375px)
+			@content
+	@else if $size == xxs
+		@media (max-width: 320px)
+			@content
+	 
+// usage 
+// @include mediaSize($size) 
+		//padding-left: 15px
+
+.center
+	@include mediaSize(xxl) 
+		padding-left: calc(50% - 560px)
+		padding-right: calc(50% - 560px)
+
+	@include mediaSize(xl) 
+		padding-left: calc(50% - 400px)
+		padding-right: calc(50% - 400px)
+
+	@include mediaSize(lg) 
+		padding-left: calc(50% - 360px)
+		padding-right: calc(50% - 360px)
+	
+	@include mediaSize(md) 
+		padding-left: calc(50% - 260px)
+		padding-right: calc(50% - 260px)
+
+	@include mediaSize(sm) 
+		padding: 0 15px
+	@include mediaSize(xxs) 
+		padding: 0px 0px
+	
+
+
+
+html
+	font-size: 14px //1rem = 14px
+
+body
+	width: 100%
+	margin: 0
+	padding: 0
+	font-family: 'Lato', sans-serif
+	font-size: 8px
+
+a
+	text-decoration: none
+	color: black
+
+.upperHeader
+	background-color: #222222
+	display: flex
+	align-items: center
+	justify-content: space-between
+	height: 75px
+
+
+.headerLeft
+
+.headerRight
+	+flexSB()
+	&__item
+		cursor: pointer
+		details
+
+	&__item:not(:last-child)
+		margin-right: 33px
+
+
+summary
+	display: block
+	outline: none
+	&::-webkit-details-marker
+		display: none
+
+
+
+
+
+// МОДАЛЬНОЕ ОКНО ШАПКИ
+
+.modal 
+	position: fixed
+	display: none
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 0
+	background: rgba(0,0,0,0.5)
+	pointer-events: none
+	&:target 
+		display: flex
+		pointer-events: auto
+
+	&__body 
+		position: absolute
+		top: 75px
+		right: 0
+		z-index: 2
+		display: block
+		margin: auto
+		padding: 15px
+		background: #FFF
+		width: 232px
+	&__full 
+		position: absolute
+		display: block
+		z-index: 0
+		width: 100%
+		height: 100%
+	.closeToggle
+		position: absolute
+		right: 15px
+		top: 15px
+
+	&__list
+		margin: 0
+		padding: 0
+		list-style-type: none
+		padding-left: 18px
+
+		&__item
+			p 
+				font-family: Lato
+				font-style: normal
+				font-weight: bold
+				font-size: 14px
+				line-height: 17px
+				color: #000000
+				cursor: default
+	&__category
+		margin-bottom: 12px
+		&__ul
+			list-style-type: none
+			padding: 0
+			margin: 0
+		&__item
+			padding-left: 15px
+			margin-bottom: 11px
+			a:hover
+				color: $colorSelect 
+				transition: 200ms
+
+	&__category summary
+		font-family: Lato
+		font-style: normal
+		font-weight: normal
+		font-size: 14px
+		line-height: 17px
+		color: #F16D7F
+		margin-bottom: 12px
+		cursor: pointer
+	
+
+		
+
+
+
+// МОДАЛЬНОЕ ОКНО ШАПКИ
+
+
+
+.pageInfo 
+	background: #F8F3F4
+	min-height: 148px
+	display: flex
+	justify-content: space-between
+	align-items: center
+	flex-wrap: wrap
+
+
+.pageInfoTitle 
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 24px
+	line-height: 29px
+	color: #F16D7F
+
+
+
+
+
+
+.headerSearch
+	margin-left: 41px
+
+
+
+
+// CART
+
+.cart
+	+flexSB()
+	align-items: flex-start
+	padding-top: 96px
+	padding-bottom: 96px
+	@include mediaSize(lg)
+		+flexSB
+	@include mediaSize(xl)
+		+flexC
+
+	&__buttons
+		+flexSB()
+		margin-top: 32px
+		&__clear, &__continue
+			width: 235px
+			height: 50px
+			background-color: #fff
+			font-family: Lato
+			font-style: normal
+			font-weight: 300
+			font-size: 14px
+			line-height: 17px
+			color: #000000		
+			border: 1px solid #A4A4A4
+			transition: 200ms
+			cursor: pointer
+			&:focus
+				outline: none
+			&:hover
+				background-color: $colorSelect
+				color: #fff
+
+	&__left
+		margin-bottom: 48px
+	&__right
+		&__inputGroup
+			+flexSB()
+			align-items: flex-start
+			flex-direction: column
+			width: 360px
+			margin-bottom: 58px
+			input
+				box-sizing: border-box
+				height: 45px
+				margin-bottom: 20px
+.adress
+	&__label
+		font-family: Lato
+		font-style: normal
+		font-weight: 300
+		font-size: 16px
+		line-height: 19px
+		color: #222222
+		margin-bottom: 20px
+	&__input
+		border: 1px solid #A4A4A4
+		width: 100%
+		padding-left: 16px
+		padding-right: 16px
+		&::-webkit-input-placeholder 
+			font-family: Lato
+			font-style: normal
+			font-weight: 300
+			font-size: 13px
+			line-height: 16px
+			color: #222222
+
+			&:hover
+				color: #B1B1B1
+
+	&__button
+		border: 1px solid #A4A4A4
+		background-color: #fff
+		font-family: Lato
+		font-style: normal
+		font-weight: 300
+		font-size: 11px
+		padding-top: 10px 
+		padding-left: 15px
+		padding-right: 15px
+		padding-bottom: 12px
+		color: #4A4A4A
+		transition: 200ms
+		cursor: pointer
+		&:focus
+			outline: none
+		&:hover
+			background-color: $colorSelect
+			color: #fff
+.shopCard
+	+flexSB()
+	align-items: flex-start
+	flex-wrap: nowrap
+	justify-content: flex-start
+	filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13))
+	background-color: #fff
+	margin-bottom: 40px
+	&__img
+		height: 306px
+
+	&__close
+		position: absolute
+		right: 22px
+		top: 28px
+		cursor: pointer
+	&__info
+		padding: 22px 31px
+		width: 350px
+		&__title
+			font-family: Lato
+			font-style: normal
+			font-weight: normal
+			font-size: 1.5rem
+			line-height: 29px
+			color: #222222
+			margin: 0
+			margin-bottom: 42px
+			max-width: 260px
+
+		&__text
+			font-family: Lato
+			font-style: normal
+			font-weight: normal
+			font-size: 1.2rem
+			line-height: 26px
+			color: #575757
+			margin: 0
+			padding-bottom: 6px
+			span 
+				color: $colorSelect
+
+		&__quantity
+			+flexSB()
+			justify-content: flex-start
+			font-size: 1.2rem
+			&__value
+				margin: 0
+				margin-left: 16px
+				padding: 2px 16px
+				font-family: Lato
+				font-style: normal
+				font-weight: normal
+				font-size: 18px
+				line-height: 22px
+				color: #656565
+				border: 1px solid #eaeaea
+
+.checkout
+	padding-left: 44px
+	padding-right: 44px
+	padding-top: 42px
+	padding-bottom: 42px
+	background-color: #F5F3F3
+
+	&__subTotal
+		+flexSB()
+		justify-content: flex-end
+		font-family: Lato
+		font-style: normal
+		font-weight: normal
+		font-size: 11px
+		line-height: 13px
+		color: #4A4A4A
+	&__total
+		+flexSB()
+		justify-content: flex-end
+		font-family: Lato
+		font-style: normal
+		font-weight: 300
+		font-size: 16px
+		line-height: 19px
+		color: #222222
+	&__name
+		padding-right: 26px
+	&__button
+		margin-top: 16px
+		padding-top: 16px
+		padding-bottom: 16px
+		padding-left: 42px
+		padding-right: 42px
+		font-family: Lato
+		font-style: normal
+		font-weight: 300
+		font-size: 16px
+		line-height: 19px
+		color: #FFFFFF
+		background-color: $colorSelect
+		border: none
+		transition: 200ms
+		cursor: pointer
+		&:focus
+			outline: none 
+		&:hover
+			background-color: #D56070
+	.colored
+		color: $colorSelect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cardGroup
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	margin-bottom: 18px
+
+.card
+	max-width: 360px
+	margin-bottom: 30px
+	background-color: #F8F8F8
+	border-radius: 2px
+	position: relative
+
+
+.cardAddToCart
+	display: none
+	justify-content: center
+	align-items: center
+	width: 139px
+	height: 44px
+	border: 1px solid white
+	position: absolute
+	top: 188px
+	left: 111px
+	color: white
+
+
+.cardAddToCart:hover
+	box-shadow: 0 0 5px #ffff
+
+
+.card:hover .cardAddToCart
+	display: flex
+
+
+.card:hover .cardImage
+	transition: 500ms
+	filter: brightness(50%)
+
+.cardImage
+	display: block
+	position: relative
+
+
+
+
+
+.cardContent
+	padding: 16px
+
+.cardTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 13px
+	line-height: 16px
+	color: #000000
+	margin-bottom: 12px
+
+
+.cardText
+	font-family: Lato
+	font-style: normal
+	font-weight: 300
+	font-size: 14px
+	line-height: 17px
+	color: #5D5D5D
+	margin-bottom: 18px
+
+.cardPrice
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #F16D7F
+
+
+
+
+
+.feturedButtonContainer
+	display: flex
+	margin-bottom: 96px
+
+.feturedButton
+	border: 1px solid #FF6A6A
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #F26376
+	padding: 14px
+	text-align: center
+	background-color: white
+	margin: 0 auto
+	transition: 500ms
+	cursor: pointer
+
+.feturedButton:focus
+	outline: none
+
+.feturedButton:hover
+	outline: none
+	background-color: #F26376
+	color: white
+	transition: 500ms
+
+
+.jumbotron
+	background-color: #222224
+
+.jumboContainer
+	display: flex
+
+.jumboItem
+	text-align: center
+	max-width: 360px
+	padding:	103px 0
+
+.jumboImage
+	width: 100%
+	margin-bottom: 20px
+	min-height: 45px
+
+.jumboTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 19.96px
+	line-height: 24px
+	color: #FBFBFB
+	margin: 0
+	margin-bottom: 16px
+
+.jumboText
+	font-family: Lato
+	font-style: normal
+	font-weight: 300
+	font-size: 13.972px
+	line-height: 17px
+	text-align: center
+	color: #FBFBFB
+	margin: 0
+
+
+
+.subscribe
+	position: relative
+	overflow: hidden
+
+	
+.subscribeFlex
+	display: flex
+	justify-content: space-around
+	margin-bottom: 13em
+	margin-top: 13em
+	@include mediaSize(md)
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+.subscribeImageBg
+	position: absolute
+	
+	height: 100%
+	z-index: -1
+
+
+.subLeft
+	max-width: 360px
+	text-align: center
+	@include mediaSize(md)
+		margin-bottom: 4rem
+
+.subLeftImg
+	margin-bottom: 30px
+
+
+.subleftText
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 20px
+	line-height: 24px
+	text-align: center
+	color: #222224
+
+.subleftText>span
+	font-family: Lato
+	font-style: italic
+	font-weight: normal
+	font-size: 20px
+	line-height: 24px
+	text-align: center
+	color: #222224
+
+
+.subRight
+	text-align: center
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	
+
+.subRightTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: bold
+	font-size: 24px
+	line-height: 167.2%
+	text-align: center
+	color: #222224
+
+.subRightText
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 18px
+	line-height: 167.2%
+	text-align: center
+	color: #222224
+	margin-bottom: 2rem
+
+.subRightSubmitContainer
+	display: flex
+	justify-content: space-between
+	
+
+.subRightinput
+	border-bottom-left-radius: 25px 
+	border-top-left-radius: 25px 
+	flex-grow: 1
+	border: none
+	background-color: #E1E1E1
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	color: #222224
+	padding-left: 22px
+	padding-right: 12px
+	padding-top: 20px
+	padding-bottom: 20px
+	align-items: center
+
+.subRightinput:focus
+	outline: none
+
+.subRightButton:focus
+	outline: none
+
+.subRightButton:hover
+	background-color: #E46778
+
+.subRightButton
+	background-color: #F16D7F
+	border: none
+	padding:  20px
+	border-bottom-right-radius: 25px 
+	border-top-right-radius: 25px
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	display: flex
+	align-items: center
+	text-align: center
+	color: #FFFFFF
+	cursor: pointer
+	transition: $transitionSpeed
+
+
+
+
+
+
+footer
+	background-color: #222224
+	padding: 24px
+
+footer>.center
+	display: flex
+	justify-content: space-between
+
+
+.footerLeft
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #FBFBFB
+
+.footerRight
+	display: flex
+	align-items: center
+	justify-content: space-between
+
+.footerIcon:not(:last-child)
+	margin-right: 8px
+
+.footerIcon
+	cursor: pointer		
+	width: 32px
+	height: 32px
+	background-color: #fff
+	display: flex
+	justify-content: center
+	align-items: center
+
+.footerIcon:hover path
+	fill: white
+
+.footerIcon:hover 
+	background-color: #F16D7F
+

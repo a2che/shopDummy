@@ -1,0 +1,624 @@
+$colorSelect: #F16D7F
+$colorText: #222222
+$widthSite: 1140px
+$transitionSpeed: 200ms
+
+=flexSB()
+	display: flex
+	justify-content: space-between
+	align-items: center
+	flex-wrap: wrap 
+	flex-direction: row
+	
+=flexC()
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-wrap: wrap 
+	flex-direction: row
+	
+=font($size, $color)
+	font-size: $size
+	color: $color
+	font-weight: normal
+	line-height: 25px
+	font-family: Lato
+
+
+
+@mixin mediaSize($size) 
+	@if $size == xxl
+		@media (min-width: 1200px)
+			@content 
+
+	@else if $size == xl 
+		@media (max-width: 1200px)
+			@content  
+
+	@else if $size == lg 
+		@media (max-width: 992px)
+			@content  
+
+	@else if $size == md 
+		@media (max-width: 768px)
+			@content
+			
+	@else if $size == sm 
+		@media (max-width: 576px)
+			@content
+	@else if $size == xs
+		@media (max-width: 375px)
+			@content
+	@else if $size == xxs
+		@media (max-width: 320px)
+			@content
+	 
+// usage 
+// @include mediaSize($size) 
+		//padding-left: 15px
+
+.center
+	@include mediaSize(xxl) 
+		padding-left: calc(50% - 560px)
+		padding-right: calc(50% - 560px)
+
+	@include mediaSize(xl) 
+		padding-left: calc(50% - 400px)
+		padding-right: calc(50% - 400px)
+
+	@include mediaSize(lg) 
+		padding-left: calc(50% - 360px)
+		padding-right: calc(50% - 360px)
+	
+	@include mediaSize(md) 
+		padding-left: calc(50% - 260px)
+		padding-right: calc(50% - 260px)
+
+	@include mediaSize(sm) 
+		padding: 0 15px
+	@include mediaSize(xxs) 
+		padding: 0px 0px
+	
+	
+
+
+
+html
+	font-size: 14px //1rem = 14px
+
+body
+	width: 100%
+	margin: 0
+	padding: 0
+	font-family: 'Lato', sans-serif
+	font-size: 8px
+
+a
+	text-decoration: none
+	color: black
+
+.upperHeader
+	background-color: #222222
+	display: flex
+	align-items: center
+	justify-content: space-between
+	height: 75px
+
+
+
+.headerLeft
+
+.headerRight
+	+flexSB()
+	&__item
+		cursor: pointer
+		details
+
+	&__item:not(:first-child) 
+		@include mediaSize(sm)
+			display: none
+		
+
+	&__item:not(:last-child)
+		margin-right: 33px
+
+
+summary
+	display: block
+	outline: none
+	&::-webkit-details-marker
+		display: none
+
+.headerSearch
+	margin-left: 41px
+
+
+
+
+// МОДАЛЬНОЕ ОКНО ШАПКИ
+
+.modal 
+	position: fixed
+	display: none
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 0
+	background: rgba(0,0,0,0.5)
+	pointer-events: none
+	&:target 
+		display: flex
+		pointer-events: auto
+
+	&__body 
+		position: absolute
+		top: 75px
+		right: 0
+		z-index: 2
+		display: block
+		margin: auto
+		padding: 15px
+		background: #FFF
+		width: 232px
+	&__full 
+		position: absolute
+		display: block
+		z-index: 0
+		width: 100%
+		height: 100%
+	.closeToggle
+		position: absolute
+		right: 15px
+		top: 15px
+
+	&__list
+		margin: 0
+		padding: 0
+		list-style-type: none
+		padding-left: 18px
+
+		&__item
+			p 
+				font-family: Lato
+				font-style: normal
+				font-weight: bold
+				font-size: 14px
+				line-height: 17px
+				color: #000000
+				cursor: default
+	&__category
+		margin-bottom: 12px
+		&__ul
+			list-style-type: none
+			padding: 0
+			margin: 0
+		&__item
+			padding-left: 15px
+			margin-bottom: 11px
+			a:hover
+				color: $colorSelect 
+				transition: 200ms
+
+	&__category summary
+		font-family: Lato
+		font-style: normal
+		font-weight: normal
+		font-size: 14px
+		line-height: 17px
+		color: #F16D7F
+		margin-bottom: 12px
+		cursor: pointer
+	
+
+		
+
+
+
+// МОДАЛЬНОЕ ОКНО ШАПКИ
+
+
+.pageInfo 
+	background: #F8F3F4
+	min-height: 148px
+	+flexSB()
+
+
+.pageInfoTitle 
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 24px
+	line-height: 29px
+	color: #F16D7F
+
+
+
+.regContainer
+	@include mediaSize(sm)
+		+flexC
+	@include mediaSize(lg)
+	align-items: flex-start
+	display: flex
+	justify-content: space-between
+	flex-basis: 160px
+	flex-wrap: nowrap
+	margin-top: 40px
+	&__info
+		
+		display: inline-block
+		@include mediaSize(sm)
+			width: 100%
+		@include mediaSize(lg)
+			padding-left: 52px
+			max-width: 452px
+			
+		@include mediaSize(xl)
+			padding-left: 52px
+			max-width: 652px
+			
+			
+		&__title
+			display: inline-block
+			font-family: Lato
+			font-style: normal
+			font-weight: 300
+			font-size: 16px
+			line-height: 19px
+			color: #000000
+			margin-top: 0
+			@include mediaSize(xl)
+				font-size: 24px
+				line-height: 29px
+
+				
+		&__text
+			text-align: justify
+			display: inline-block
+			padding: 0
+			margin: 0
+			font-family: Lato
+			font-style: normal
+			font-weight: 300
+			font-size: 16px
+			line-height: 19px
+			word-wrap: break-word
+			margin-bottom: 21px
+			color: #000000
+
+			@include mediaSize(xl)
+				font-size: 24px
+				line-height: 29px
+		&__list
+			display: inline-block
+			list-style-image: url('galka.png')
+			padding: 0
+			margin: 0
+			&__item
+				font-family: Lato
+				font-style: normal
+				font-weight: 300
+				font-size: 16px
+				line-height: 19px
+				color: #000000
+				margin-bottom: 16px
+				@include mediaSize(xl)
+					font-size: 24px
+					line-height: 29px
+
+
+	&__form
+		width: 100%
+		@include mediaSize(sm)
+			
+			padding: 0 8px
+		@include mediaSize(lg)
+			margin-bottom: 40px
+			
+		@include mediaSize(xl)
+			margin-bottom: 56px
+			
+		&__top
+		&__title
+			font-family: Lato
+			font-style: normal
+			font-weight: 300
+			font-size: 16px
+			line-height: 19px
+			color: #222222
+			margin-bottom: 20px
+			margin-top: 0
+		&__input	
+			width: 100%
+			padding: 13px 18px
+			margin-bottom: 20px
+			display: block
+			box-sizing: border-box
+			border: 1px solid #A4A4A4
+			outline: none
+			&::-webkit-input-placeholder 
+				font-family: Lato
+				font-style: normal
+				font-weight: 300
+				font-size: 13px
+				line-height: 16px
+				color: #B1B1B1
+
+
+
+				
+		&__radio
+			margin-bottom: 34px
+			&__label
+				font-family: Lato
+				font-style: normal
+				font-weight: 300
+				font-size: 13px
+				line-height: 13px
+				color: #000000
+				display: inline-flex
+				align-items: center
+				user-select: none
+				margin-right: 20px
+				&::before
+					content: ''
+					display: inline-block
+					width: 1em
+					height: 1em
+					flex-shrink: 0
+					flex-grow: 0
+					border: 1px solid #adb5bd
+					border-radius: 50%
+					margin-right: 0.5em
+					background-repeat: no-repeat
+					background-position: center center
+					background-size: 50% 50%
+
+
+
+
+
+
+			&__button
+
+				position: absolute
+				z-index: -1
+				opacity: 0
+				&:not(:disabled):not(:checked)+label:hover::before 
+					border-color: #b3d7ff
+
+
+
+				&:not(:disabled):active+label::before
+					background-color: #b3d7ff
+					border-color: #b3d7ff
+
+				&:focus:not(:checked)+label::before
+					border-color: #80bdff
+
+				&:checked+label::before 
+					background-color: #D3D3D3
+
+				&:disabled+label::before 
+					background-color: #e9ecef
+
+
+
+		&__condition
+			font-family: Lato
+			font-style: normal
+			font-weight: 300
+			font-size: 13px
+			line-height: 16px
+			margin-bottom: 40px
+			color: #B1B1B1
+		&__button
+			img
+				margin-left: 20px
+			background-color: #F16D7F
+			width: 167px
+			height: 50px
+			
+			font-size: 14px
+			color: #fff
+			+flexC()
+			border: none
+			outline: none
+			cursor: pointer
+			&:hover
+				background-color: #DE6474
+				border-top: 4px solid #9D4752
+				border-right: 4px solid #9D4752
+			&:active
+				background-color: #C45867
+				
+				border-top: none
+				border-right: none
+					
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.subscribe
+	position: relative
+	overflow: hidden
+
+	
+.subscribeFlex
+	display: flex
+	justify-content: space-around
+	margin-bottom: 13em
+	margin-top: 13em
+	@include mediaSize(md)
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+.subscribeImageBg
+	position: absolute
+	
+	height: 100%
+	z-index: -1
+
+
+.subLeft
+	max-width: 360px
+	text-align: center
+	@include mediaSize(md)
+		margin-bottom: 4rem
+
+.subLeftImg
+	margin-bottom: 30px
+
+
+.subleftText
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 20px
+	line-height: 24px
+	text-align: center
+	color: #222224
+
+.subleftText>span
+	font-family: Lato
+	font-style: italic
+	font-weight: normal
+	font-size: 20px
+	line-height: 24px
+	text-align: center
+	color: #222224
+
+
+.subRight
+	text-align: center
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	
+
+.subRightTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: bold
+	font-size: 24px
+	line-height: 167.2%
+	text-align: center
+	color: #222224
+
+.subRightText
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 18px
+	line-height: 167.2%
+	text-align: center
+	color: #222224
+	margin-bottom: 2rem
+
+.subRightSubmitContainer
+	display: flex
+	justify-content: space-between
+	
+
+.subRightinput
+	border-bottom-left-radius: 25px 
+	border-top-left-radius: 25px 
+	flex-grow: 1
+	border: none
+	background-color: #E1E1E1
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	color: #222224
+	padding-left: 22px
+	padding-right: 12px
+	padding-top: 20px
+	padding-bottom: 20px
+	align-items: center
+
+.subRightinput:focus
+	outline: none
+
+.subRightButton:focus
+	outline: none
+
+.subRightButton:hover
+	background-color: #E46778
+
+.subRightButton
+	background-color: #F16D7F
+	border: none
+	padding:  20px
+	border-bottom-right-radius: 25px 
+	border-top-right-radius: 25px
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	display: flex
+	align-items: center
+	text-align: center
+	color: #FFFFFF
+	cursor: pointer
+	transition: $transitionSpeed
+
+
+
+
+
+
+
+footer
+	background-color: #222224
+	padding: 24px
+
+footer>.center
+	+flexSB()
+
+
+.footerLeft
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #FBFBFB
+
+.footerRight
+	+flexSB()
+
+.footerIcon:not(:last-child)
+	margin-right: 8px
+
+.footerIcon
+	cursor: pointer		
+	width: 32px
+	height: 32px
+	background-color: #fff
+	+flexC()
+
+.footerIcon:hover path
+	fill: white
+
+.footerIcon:hover 
+	background-color: #F16D7F

@@ -1,0 +1,24 @@
+$mainColor: #0C3B83
+
+=flex($justify)
+	display: flex
+	justify-content: $justify
+	flex-direction: row
+
+
+
+=font($size,$weight,$color)
+	font-family: Roboto, sans-serif
+	font-style: normal
+	font-size: $size
+	font-weight: $weight
+	color: $color
+a
+	text-decoration: none
+
+
+
+
+.development
+	&__title
+		+font(64px, normal,$mainColor)

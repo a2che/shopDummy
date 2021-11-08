@@ -1,0 +1,790 @@
+$colorSelect: #F16D7F
+$colorText: #222222
+$widthSite: 1140px
+$transitionSpeed: 200ms
+
+=flexSB()
+	display: flex
+	justify-content: space-between
+	align-items: center
+	flex-wrap: wrap 
+	flex-direction: row
+	
+=flexC()
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-wrap: wrap 
+	flex-direction: row
+	
+=font($size, $color)
+	font-size: $size
+	color: $color
+	font-weight: normal
+	line-height: 25px
+	font-family: Lato
+
+
+
+@mixin mediaSize($size) 
+	@if $size == xxl
+		@media (min-width: 1200px)
+			@content 
+
+	@else if $size == xl 
+		@media (max-width: 1200px)
+			@content  
+
+	@else if $size == lg 
+		@media (max-width: 992px)
+			@content  
+
+	@else if $size == md 
+		@media (max-width: 768px)
+			@content
+			
+	@else if $size == sm 
+		@media (max-width: 576px)
+			@content
+	@else if $size == xs
+		@media (max-width: 375px)
+			@content
+	@else if $size == xxs
+		@media (max-width: 320px)
+			@content
+	 
+// usage 
+// @include mediaSize($size) 
+		//padding-left: 15px
+
+.center
+	@include mediaSize(xxl) 
+		padding-left: calc(50% - 560px)
+		padding-right: calc(50% - 560px)
+
+	@include mediaSize(xl) 
+		padding-left: calc(50% - 400px)
+		padding-right: calc(50% - 400px)
+
+	@include mediaSize(lg) 
+		padding-left: calc(50% - 360px)
+		padding-right: calc(50% - 360px)
+	
+	@include mediaSize(md) 
+		padding-left: calc(50% - 260px)
+		padding-right: calc(50% - 260px)
+
+	@include mediaSize(sm) 
+		padding: 0 15px
+	@include mediaSize(xxs) 
+		padding: 0px 0px
+	
+	
+
+
+
+html
+	font-size: 14px //1rem = 14px
+
+body
+	width: 100%
+	margin: 0
+	padding: 0
+	font-family: 'Lato', sans-serif
+	font-size: 8px
+
+a
+	text-decoration: none
+	color: black
+
+.upperHeader
+	background-color: #222222
+	display: flex
+	align-items: center
+	justify-content: space-between
+	height: 75px
+
+
+
+
+.headerLeft
+	display: flex
+	justify-content: space-between
+	align-items: center
+	@include mediaSize(sm) 
+		display: none
+.headerRight
+	+flexSB()
+
+	&__item
+		cursor: pointer
+		details
+
+	&__item:not(:last-child)
+		margin-right: 33px
+
+
+summary
+	display: block
+	outline: none
+	&::-webkit-details-marker
+		display: none
+
+
+
+
+
+// МОДАЛЬНОЕ ОКНО ШАПКИ
+
+.modal 
+	position: fixed
+	display: none
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 5
+	background: rgba(0,0,0,0.5)
+	pointer-events: none
+	&:target 
+		display: flex
+		pointer-events: auto
+
+	&__body 
+		position: absolute
+		top: 75px
+		right: 0
+		z-index: 2
+		display: block
+		margin: auto
+		padding: 15px
+		background: #FFF
+		width: 232px
+	&__full 
+		position: absolute
+		display: block
+		z-index: 0
+		width: 100%
+		height: 100%
+	.closeToggle
+		position: absolute
+		right: 15px
+		top: 15px
+		pointer-events: none
+		&:target 
+			display: flex
+			pointer-events: auto
+
+	&__list
+		margin: 0
+		padding: 0
+		list-style-type: none
+		padding-left: 18px
+
+		&__item
+			a,p
+				font-family: Lato
+				font-style: normal
+				font-weight: bold
+				font-size: 14px
+				line-height: 17px
+				color: #000000
+				cursor: default
+	&__category
+		margin-bottom: 12px
+		&__ul
+			list-style-type: none
+			padding: 0
+			margin: 0
+		&__item
+			padding-left: 15px
+			margin-bottom: 11px
+			a:hover
+				color: $colorSelect 
+				transition: $transitionSpeed
+			a  
+				cursor: pointer
+
+	&__category summary
+		font-family: Lato
+		font-style: normal
+		font-weight: normal
+		font-size: 14px
+		line-height: 17px
+		color: #F16D7F
+		margin-bottom: 12px
+		cursor: pointer
+	
+
+		
+
+
+
+// МОДАЛЬНОЕ ОКНО ШАПКИ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.headerSearch
+	margin-left: 41px
+
+.promo
+	background: #F1E4E6
+	padding-left: calc(50% - 800px)
+	padding-right: calc(50% - 800px)
+	display: flex
+
+.promoImg
+	width: 50%
+	display: flex
+	@include mediaSize(sm)
+		display: none
+
+.promoPhoto
+	width: 100%
+
+.promoText
+	width: 70%
+	@include mediaSize(sm)
+		margin: 0 auto
+
+.promoContent
+	margin-top: 20%
+	border-left: 12px solid #F16D7F
+	padding-left: 12px
+	@include mediaSize(sm)
+		padding: 0
+		margin: 2rem auto
+		text-align: center
+
+.promoTitle
+	@include mediaSize(xxl)
+		font-size: 7rem 
+	@include mediaSize(xl)
+		font-size: 6rem
+	@include mediaSize(lg)
+		font-size: 4rem
+	@include mediaSize(md)
+		font-size: 3rem
+	@include mediaSize(sm)
+		font-size: 3rem
+		margin-bottom: 12px
+
+		
+	
+
+	
+	font-style: normal
+	font-weight: 900
+	color: #222222
+	margin: 0
+
+.promoInfo
+	@include mediaSize(xxl)
+		font-size: 2rem 
+	@include mediaSize(xl)
+		font-size: 2rem
+	@include mediaSize(lg)
+		font-size: 1rem
+	@include mediaSize(md)
+		font-size: 1rem
+	@include mediaSize(sm)
+		font-size: 1rem
+	font-style: normal
+	font-weight: 900
+	color: #222222
+	margin: 0
+
+.select
+	color: #F16D7F
+
+.saleBottom
+
+
+
+.saleTop
+	display: flex
+	justify-content: space-between
+	margin-top: 64px
+	padding-bottom: 30px
+	@include mediaSize(md) 
+		flex-direction: column
+		padding-bottom: 0
+		margin-top: 24px
+
+.saleItem
+	position: relative
+	@include mediaSize(md) 
+		margin: 1rem 0
+
+.saleItem:not(:last-child)
+	margin-right: 30px
+	@include mediaSize(md) 
+		margin: 1rem 0
+.saleText
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+
+.saleP
+	color: white
+	font-style: normal
+	font-weight: 300
+	margin: 0
+	@include mediaSize(xxl)
+		font-size: 1rem 
+	@include mediaSize(xl)
+		font-size: 1rem
+	@include mediaSize(md)
+		font-size: 1.5rem
+	@include mediaSize(xs)
+		font-size: 1.2rem
+	@include mediaSize(xxs)
+		font-size: 1rem
+
+.saleTitle
+	color: #F16D7F
+	font-style: normal
+	font-weight: 900
+	margin: 0
+	@include mediaSize(xxl)
+		font-size: 1.5rem 
+	@include mediaSize(xl)
+		font-size: 1.5rem
+	@include mediaSize(md)
+		font-size: 2rem
+	@include mediaSize(xs)
+		font-size: 1.5rem
+	@include mediaSize(xxs)
+		font-size: 1.5rem
+
+.saleImage
+	width: 100%
+
+
+
+.feturedTitle
+	text-align: center
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 30px
+	line-height: 36px
+	color: #222222
+
+.feturedText
+	text-align: center
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	color: #9F9F9F
+
+
+
+
+
+
+
+
+
+
+
+.cardGroup
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	margin-bottom: 18px
+	@include mediaSize(md)
+		justify-content: center
+
+.card
+	max-width: 352px
+	margin-bottom: 30px
+	background-color: #F8F8F8
+	border-radius: 2px
+	position: relative
+	transition: $transitionSpeed
+	cursor: pointer
+	@include mediaSize(xl)
+		justify-content: center
+		max-width: 382px
+	@include mediaSize(lg)
+		justify-content: center
+		max-width: 342px
+	@include mediaSize(md)
+		justify-content: center
+		max-width: 642px
+.card:hover
+	transform: scale(1.05)
+	z-index: 66
+.card:active
+	transform: scale(1.04)
+	
+
+.cardAddToCart
+	display: none
+	justify-content: center
+	align-items: center
+	width: 162px
+	height: 44px
+	border: 1px solid white
+	position: absolute
+	color: white
+
+
+.cardAddToCart:hover
+	box-shadow: 0 0 5px #ffff
+
+
+.card:hover .cardAddToCart
+	display: flex
+
+
+.card:hover .cardImage
+	transition: $transitionSpeed
+	filter: brightness(50%)
+
+.cardImageContainer
+	display: flex
+	justify-content: center
+	align-items: center
+	position: relative
+
+.cardImage
+	width: 100%
+.cardContent
+	padding: 16px
+
+.cardTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 13px
+	line-height: 16px
+	color: #000000
+	margin-bottom: 12px
+
+
+.cardText
+	font-family: Lato
+	font-style: normal
+	font-weight: 300
+	font-size: 14px
+	line-height: 17px
+	color: #5D5D5D
+	margin-bottom: 18px
+
+.cardPrice
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #F16D7F
+
+.addToCartText
+	font-size: 1rem
+
+
+
+.feturedButtonContainer
+	display: flex
+	margin-bottom: 96px
+
+.feturedButton
+	border: 1px solid #FF6A6A
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #F26376
+	padding: 14px
+	text-align: center
+	background-color: white
+	margin: 0 auto
+	transition: $transitionSpeed
+	cursor: pointer
+
+.feturedButton:focus
+	outline: none
+
+.feturedButton:hover
+	outline: none
+	background-color: #F26376
+	color: white
+	transition: $transitionSpeed
+
+
+.jumbotron
+	background-color: #222224
+	display: flex
+	@include mediaSize(sm)
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+
+.jumboItem
+	text-align: center
+	max-width: 360px
+	padding:  6rem 0
+	@include mediaSize(sm)
+		padding: 2rem 0 
+
+.jumboImage
+	width: 100%
+	margin-bottom: 20px
+	min-height: 56px
+	display: flex
+	align-items: center
+	justify-content: center
+	@include mediaSize(sm)
+		
+.jumboImage img 
+	@include mediaSize(xxl)
+		width: 4rem
+	@include mediaSize(xl)
+		width: 4rem
+	@include mediaSize(lg)
+		width: 4rem
+	@include mediaSize(md)
+		width: 3rem
+	@include mediaSize(sm)
+		width: 3rem
+	@include mediaSize(xs)
+		width: 3rem
+	@include mediaSize(xxs)
+		width: 2rem
+
+
+.jumboTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 19.96px
+	line-height: 24px
+	color: #FBFBFB
+	margin: 0
+	margin-bottom: 16px
+
+.jumboText
+	font-family: Lato
+	font-style: normal
+	font-weight: 300
+	font-size: 13.972px
+	line-height: 17px
+	text-align: center
+	color: #FBFBFB
+	margin: 0
+
+
+
+.subscribe
+	position: relative
+	overflow: hidden
+
+	
+.subscribeFlex
+	display: flex
+	justify-content: space-around
+	margin-bottom: 13em
+	margin-top: 13em
+	@include mediaSize(md)
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+.subscribeImageBg
+	position: absolute
+	
+	height: 100%
+	z-index: -1
+
+
+.subLeft
+	max-width: 360px
+	text-align: center
+	@include mediaSize(md)
+		margin-bottom: 4rem
+
+.subLeftImg
+	margin-bottom: 30px
+
+
+.subleftText
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 20px
+	line-height: 24px
+	text-align: center
+	color: #222224
+
+.subleftText>span
+	font-family: Lato
+	font-style: italic
+	font-weight: normal
+	font-size: 20px
+	line-height: 24px
+	text-align: center
+	color: #222224
+
+
+.subRight
+	text-align: center
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	
+
+.subRightTitle
+	font-family: Lato
+	font-style: normal
+	font-weight: bold
+	font-size: 24px
+	line-height: 167.2%
+	text-align: center
+	color: #222224
+
+.subRightText
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 18px
+	line-height: 167.2%
+	text-align: center
+	color: #222224
+	margin-bottom: 2rem
+
+.subRightSubmitContainer
+	display: flex
+	justify-content: space-between
+	
+
+.subRightinput
+	border-bottom-left-radius: 25px 
+	border-top-left-radius: 25px 
+	flex-grow: 1
+	border: none
+	background-color: #E1E1E1
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	color: #222224
+	padding-left: 22px
+	padding-right: 12px
+	padding-top: 20px
+	padding-bottom: 20px
+	align-items: center
+
+.subRightinput:focus
+	outline: none
+
+.subRightButton:focus
+	outline: none
+
+.subRightButton:hover
+	background-color: #E46778
+
+.subRightButton
+	background-color: #F16D7F
+	border: none
+	padding:  20px
+	border-bottom-right-radius: 25px 
+	border-top-right-radius: 25px
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 14px
+	line-height: 17px
+	display: flex
+	align-items: center
+	text-align: center
+	color: #FFFFFF
+	cursor: pointer
+	transition: $transitionSpeed
+
+
+
+
+
+
+footer
+	background-color: #222224
+	padding: 24px 0
+	display: flex
+	justify-content: space-between
+	@include mediaSize(md)
+		flex-direction: column
+
+
+footer>.center
+	display: flex
+	justify-content: space-between
+
+
+.footerLeft
+	font-family: Lato
+	font-style: normal
+	font-weight: normal
+	font-size: 16px
+	line-height: 19px
+	color: #FBFBFB
+
+.footerRight
+	display: flex
+	align-items: center
+	justify-content: space-between
+	@include mediaSize(md)
+		justify-content: flex-start
+
+.footerIcon:not(:last-child)
+	margin-right: 8px
+
+.footerIcon
+	cursor: pointer		
+	width: 32px
+	height: 32px
+	background-color: #fff
+	display: flex
+	justify-content: center
+	align-items: center
+	transition: $transitionSpeed
+
+.footerIcon:hover path
+	fill: white
+
+.footerIcon:hover 
+	background-color: #F16D7F
